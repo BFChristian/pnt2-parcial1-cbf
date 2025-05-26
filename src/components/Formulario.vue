@@ -6,13 +6,13 @@
     </form>
     <div id="representaciones">
         <h3>Representaciones</h3>
-        <p>1 - {{codificado(this.textoIngresado)}} (Codificado)</p>
-        <p>2 - {{this.textoIngresado.toUpperCase()}} (mayuscula)</p>
-        <p>3 - {{this.textoIngresado.toLowerCase()}} (minuscula)</p>
-        <p>4 - {{intercalarMayusculaMinuscula(this.textoIngresado)}}(mayuscula/minuscula)</p>
-        <p>5 - {{intercalarMinusculaMayuscula(this.textoIngresado)}}(minuscula/mayuscula)</p>
+        <p>1 - {{ codificado }} (Codificado)</p>
+        <p>2 - {{ this.textoIngresado.toUpperCase() }} (mayuscula)</p>
+        <p>3 - {{ this.textoIngresado.toLowerCase() }} (minuscula)</p>
+        <p>4 - {{ intercalarMayusculaMinuscula(this.textoIngresado) }}(mayuscula/minuscula)</p>
+        <p>5 - {{ intercalarMinusculaMayuscula(this.textoIngresado) }}(minuscula/mayuscula)</p>
     </div>
-    </hr>
+    <hr>
     <h2>Preguntas</h2>
     <p>Pregunta 1: C</p>
     <p>Pregunta 2: C</p>
@@ -29,14 +29,6 @@ export default {
         }
     },
     methods: {
-        codificado(input){
-            let texto = "";
-            if (input.includes("a")) texto = texto.replace("a", "u");
-            if (input.includes("e")) texto = texto.replace("e", "o");
-            if (input.includes("o")) texto = texto.replace("o", "e");
-            if (input.includes("u")) texto = texto.replace("u", "a"); 
-            return texto;
-        },
         intercalarMinusculaMayuscula(texto) {
             let resultado = '';
             for (let i = 0; i < texto.length; i++) {
@@ -66,8 +58,9 @@ export default {
                 cantidad: this.textoIngresado.length
             }
         },
-
-        
+        codificado() {
+            return this.textoIngresado.toLowerCase().replace(/a/g, "u").replace(/e/g, "o").replace(/o/g, "e").replace(/u/g, "a");
+        }
     },
 }
 </script>
