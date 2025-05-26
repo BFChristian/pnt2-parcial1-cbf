@@ -59,7 +59,20 @@ export default {
             }
         },
         codificado() {
-            return this.textoIngresado.toLowerCase().replace(/a/g, "u").replace(/e/g, "o").replace(/o/g, "e").replace(/u/g, "a");
+            const letrasAReemplazar = {
+                a: 'u',
+                e: 'o',
+                i: 'i',
+                o: 'e',
+                u: 'a'
+            };
+
+            let resultado = '';
+            this.textoIngresado.toLowerCase().split('').forEach(letra => {
+                resultado += letrasAReemplazar[letra] || letra;
+            });
+
+            return resultado;
         }
     },
 }
